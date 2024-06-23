@@ -56,6 +56,9 @@ Other hardware-specific features:
 - our system has 6-line TCS bus with video intercom (instead of the usual 2/3 line)
     - getting 5V from the 24V TCS bus P-line using DC-DC buck converter to power the ESP produces noise (cracking sound) in the video intercom (EMI/grounding issues?)
     - decided to use an optocoupler to separate the ESP ground from the TCS bus B-line
+ 
+<img src="/docs/osc.jpg" alt="osc.jpg" width="640"/>
+<img src="/docs/breadboard.jpg" alt="breadboard.jpg" width="640"/> 
 
 # ✏️TCS Bus References (auf Deutsch)
 - [TCS_Systemhandbuch](https://www.tcsag.de/fileadmin/user_upload/TCS_DE/Metanavigation/Downloads/Publikationen/TCS_Systemhandbuch.pdf)
