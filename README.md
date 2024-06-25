@@ -1,7 +1,7 @@
 # 🚪telegram-doorman
 Interact with your TCS intercom with a Telegram Bot and ESP8266
 
-![example workflow](https://github.com/jctots/telegram-doorman-private/actions/workflows/main.yml/badge.svg?branch=main-private)
+![example workflow](https://github.com/jctots/telegram-doorman/actions/workflows/main.yml/badge.svg?branch=main)
 
 <table border="0">
 <tr><td>Open Door Demo<br><img src="/docs/demo.gif" alt="demo.gif" width="300"/></td>
