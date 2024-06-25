@@ -216,10 +216,10 @@ void handleDevModeRequest(void)
     if (config.devMode == false)
     {
       config.devMode= true;
-      // prevSilentModeMain = config.silentModeMain;
-      // prevSilentModeSub1 = config.silentModeSub1;
-      // prevSilentModeSub2 = config.silentModeSub2;
-      // prevSniffMode = config.sniffMode;
+      config.silentModeMainPrev = config.silentModeMain;
+      config.silentModeSub1Prev = config.silentModeSub1;
+      config.silentModeSub2Prev = config.silentModeSub2;
+      config.sniffModePrev = config.sniffMode;
       config.silentModeMain = false;
       config.silentModeSub1 = true;
       config.silentModeSub2 = true;
@@ -231,10 +231,10 @@ void handleDevModeRequest(void)
     else
     {
       config.devMode = false;
-      // config.silentModeMain = prevSilentModeMain;
-      // config.silentModeSub1 = prevSilentModeSub1;
-      // config.silentModeSub2 = prevSilentModeSub2;
-      // config.sniffMode = prevSniffMode;
+      config.silentModeMain = config.silentModeMainPrev;
+      config.silentModeSub1 = config.silentModeSub1Prev;
+      config.silentModeSub2 = config.silentModeSub2Prev;
+      config.sniffMode = config.sniffModePrev;
       saveConfig(config); 
       sendTelegramUser(config.telegram.chatIdMain,"Bot Event: Dev Mode Disabled");
     }

@@ -42,6 +42,10 @@ struct Config
     bool silentModeSub2;
     bool sniffMode;
     bool devMode;
+    bool silentModeMainPrev;
+    bool silentModeSub1Prev;
+    bool silentModeSub2Prev;
+    bool sniffModePrev;
 };
 
 

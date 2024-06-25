@@ -37,6 +37,10 @@ void saveConfig(Config &config)
     doc["silentModeSub2"] = config.silentModeSub2; 
     doc["sniffMode"] = config.sniffMode; 
     doc["devMode"] = config.devMode; 
+    doc["silentModeMainPrev"] = config.silentModeMainPrev; 
+    doc["silentModeSub1Prev"] = config.silentModeSub1Prev; 
+    doc["silentModeSub2Prev"] = config.silentModeSub2Prev; 
+    doc["sniffModePrev"] = config.sniffModePrev; 
 
  
     // Serialize JSON to file
@@ -95,6 +99,10 @@ bool loadConfig(Config &config)
         if (doc.containsKey("silentModeSub2")) config.silentModeSub2 = doc["silentModeSub2"];
         if (doc.containsKey("sniffMode")) config.sniffMode = doc["sniffMode"];
         if (doc.containsKey("devMode")) config.devMode = doc["devMode"];
+        if (doc.containsKey("silentModeMainPrev")) config.silentModeMainPrev = doc["silentModeMainPrev"];
+        if (doc.containsKey("silentModeSub1Prev")) config.silentModeSub1Prev = doc["silentModeSub1Prev"];
+        if (doc.containsKey("silentModeSub2Prev")) config.silentModeSub2Prev = doc["silentModeSub2Prev"];
+        if (doc.containsKey("sniffModePrev")) config.sniffModePrev = doc["sniffModePrev"];
         // load successful
         return_error = 0;
         Serial.println("Load successful");
@@ -137,5 +145,9 @@ void setupConfig(void)
     Serial.print("m4): ");   Serial.println(config.silentModeSub2);
     Serial.print("m5): ");   Serial.println(config.sniffMode);
     Serial.print("m6): ");   Serial.println(config.devMode);
+    Serial.print("m7): ");   Serial.println(config.silentModeMainPrev);
+    Serial.print("m8): ");   Serial.println(config.silentModeSub1Prev);
+    Serial.print("m9): ");   Serial.println(config.silentModeSub2Prev);
+    Serial.print("mA): ");   Serial.println(config.sniffModePrev);
 
 }
