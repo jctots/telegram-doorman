@@ -3,10 +3,10 @@ Interact with your TCS intercom with a Telegram Bot and ESP8266
 
 ![example workflow](https://github.com/jctots/telegram-doorman-private/actions/workflows/main.yml/badge.svg?branch=main-private)
 
-<table>
+<table border="0">
 <tr><td>Open Door Demo<br><img src="/docs/demo.gif" alt="demo.gif" width="300"/></td>
     <td>Telegram Actions<br><img src="/docs/menu.png" alt="menu.png" width="300"/>
-    <br><br><br>Example Notifications<br><img src="/docs/notifications.png" alt="notifications.png" width="300"/>
+    <br><br>Example Notifications<br><img src="/docs/notifications.png" alt="notifications.png" width="300"/>
     </td>
 </tr>
 </table>
