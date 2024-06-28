@@ -11,19 +11,21 @@ Interact with your TCS intercom with a Telegram Bot and ESP8266
 </tr>
 </table>
 
-Currently supported TCS bus events 
+Currently supported TCS bus events:
 - send open door command (up to two doors)
+- receive notifications for open door
 - receive notifications for intercom call
 - receive notifications for apartment doorbell
 - receive notifications during lift handset
 
 
 # 📱Features
-- Multi-user - easily register/remove additional 2 telegram chatIDs (group chatID or user chatID) as bot user
-- Silent mode (per user) - disable notification of TCS bus events for specific user
-- Party mode (all users) - door unlock every intercom call
-- Sniff mode (main user) - forward all TCS bus events 
-- Dev mode (main user) - silent mode for other users and enable sniff mode (useful for debugging and testing)
+- Multi-user: easily register/remove additional 2 telegram chatIDs (group chatID or user chatID) as bot user
+- Silent mode (per user): disable notification of TCS bus events for specific user
+- Party mode (all users): automatic door unlock every intercom call
+- Sniff mode (main user): forward all TCS bus events 
+- Dev mode (main user): silent mode for other users and enable sniff mode (useful for debugging and testing)
+- Easy SW development via PlatformIO environment, Arduino OTA, and GitHub Actions
 
 Other hardware-specific features:
 - possible isolation of TCS BUS and ESP circuit via optocoupler when ESP is powered by separate supply 
@@ -33,22 +35,20 @@ Other hardware-specific features:
 [Link to Schematic Diagram](/docs/schematic.jpg)
 
 # ✅To-do 
-- [ ] find a way to power ESP from TCS bus P-Line  without cracking sound
+- [ ] find a way to power ESP from TCS bus P-Line without cracking sound
 - [ ] proper cabling and housing
 - [ ] support for [telegram-keyman](https://github.com/jctots/telegram-keyman) for complete keyless apartment entry!
 - [ ] create user manual, getting started (sphinx-docs), integration manual (with oscilloscope photos)
 - [ ] add section for known issues and limitations
-- [ ] Arduino OTA
 - [ ] low power mode/proper scheduling for optional battery support
 
 # 🛠️Roadmap 
 - [ ] PCB layout
-- [ ] support ESPhome
 - [ ] logs (reset counter, etc.) and error handling
-- [ ] simple HTML server to update config
-- [ ] add tests for TDD demo
+- [ ] simple HTML web server to update config
+- [ ] add sample unit tests for TDD demo
 - [ ] create GitHub actions for automated test and docs generation
-- [ ] add domain and application models for DDD demo
+- [ ] add sample domain and application models for DDD demo
 
 # 🌐System Overview
 <img src="/docs/context.drawio.png" alt="context.drawio.png" width="640"/>
