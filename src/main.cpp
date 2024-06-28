@@ -3,6 +3,7 @@
 #include <UniversalTelegramBot.h>
 #include <ArduinoJson.h>
 #include <LittleFS.h>
+#include <ArduinoOTA.h>
 
 #include <TCSBus.h>
 #include <SimpleTimer.h>
@@ -87,6 +88,46 @@ void setup(void)
   timerLedPeriod.stop();
   timerLedPulse.stop();
 
+  //OTA
+  // Port defaults to 8266
+  ArduinoOTA.setPort(8266);
+  // Hostname defaults to esp8266-[ChipID]
+  ArduinoOTA.setHostname("telegram-doorman");
+  // No authentication by default
+  ArduinoOTA.setPassword(OTA_PASSWORD);
+  
+  ArduinoOTA.onStart([]() {
+    String type;
+    if (ArduinoOTA.getCommand() == U_FLASH) {
+      type = "sketch";
+    } else {  // U_FS
+      type = "filesystem";
+    }
+
+    // NOTE: if updating FS this would be the place to unmount FS using FS.end()
+    Serial.println("Start updating " + type);
+  });
+  ArduinoOTA.onEnd([]() {
+    Serial.println("\nEnd");
+  });
+  ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
+    Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
+  });
+  ArduinoOTA.onError([](ota_error_t error) {
+    Serial.printf("Error[%u]: ", error);
+    if (error == OTA_AUTH_ERROR) {
+      Serial.println("Auth Failed");
+    } else if (error == OTA_BEGIN_ERROR) {
+      Serial.println("Begin Failed");
+    } else if (error == OTA_CONNECT_ERROR) {
+      Serial.println("Connect Failed");
+    } else if (error == OTA_RECEIVE_ERROR) {
+      Serial.println("Receive Failed");
+    } else if (error == OTA_END_ERROR) {
+      Serial.println("End Failed");
+    }
+  });
+  ArduinoOTA.begin();
 
   Serial.println("-- setup end --\n\n\n");
 
@@ -107,6 +148,8 @@ void setup(void)
 
 
 void loop() {
+  //OTA
+  ArduinoOTA.handle();
 
   //handle TCS bus event
   if (tcsReader.hasCommand())
@@ -118,6 +161,8 @@ void loop() {
     else if (cmd == config.tcs.garageCall) handleTcsGarageCall();
     else if (cmd == config.tcs.streetView) handleTcsStreetView();
     else if (cmd == config.tcs.garageView) handleTcsGarageView();
+    else if (cmd == config.tcs.streetOpen) handleTcsGarageOpen();
+    else if (cmd == config.tcs.garageOpen) handleTcsGarageOpen();
     else;
 
     if (config.sniffMode == true) handleSniffMode(cmd);
@@ -146,8 +191,8 @@ void loop() {
             (strcmp(config.telegram.chatIdSub1, chat_id.c_str()) == 0) ||
             (strcmp(config.telegram.chatIdSub1, chat_id.c_str()) == 0))
         {
-          if (text == "/sdoor") handleTcsStreetOpen();
-          else if (text == "/gdoor") handleTcsGarageOpen();
+          if (text == "/sdoor") handleTcsStreetOpenCmd();
+          else if (text == "/gdoor") handleTcsGarageOpenCmd();
           else if (text == "/silent") handleSilentModeRequest();
           else if (text == "/party") handlePartyModeRequest();
           else if (text == "/help") handleHelpRequest();

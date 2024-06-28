@@ -11,7 +11,7 @@
 #define DEFAULT_TELEGRAM_CHAT_ID "xxxyyyzzz"
 // for adding/removing new bot users
 #define BOT_USERS_PASSWORD "xxxyyyzzz"
-
+#define OTA_PASSWORD "xxxyyyzzz"
 
 #define DEFAULT_TCS_APT_BELL 0xDEADBEEF
 #define DEFAULT_TCS_STREET_CALL 0xDEADBEEF

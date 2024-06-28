@@ -11,6 +11,8 @@ extern void handleTcsStreetView(void);
 extern void handleTcsGarageView(void);
 extern void handleSniffMode(uint32_t cmd);
 
+extern void handleTcsStreetOpenCmd(void);
+extern void handleTcsGarageOpenCmd(void);
 extern void handlePartyModeRequest(void);
 extern void handleSilentModeRequest(void);
 extern void handleSniffModeRequest(void);

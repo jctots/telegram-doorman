@@ -2778,6 +2778,12 @@
 		(uuid "bb52c54f-c2dc-4d4e-8864-55dadaa4b91b")
 	)
 	(junction
+		(at 41.91 139.7)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c2d81649-468c-460b-a8d4-3f664cf96fdd")
+	)
+	(junction
 		(at 110.49 120.65)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2817,6 +2823,16 @@
 	)
 	(wire
 		(pts
+			(xy 59.69 137.16) (xy 59.69 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0138ba83-3dc8-4dc3-990d-aac2413be215")
+	)
+	(wire
+		(pts
 			(xy 105.41 64.77) (xy 109.22 64.77)
 		)
 		(stroke
@@ -2844,6 +2860,16 @@
 			(type default)
 		)
 		(uuid "14054304-41d9-4d92-aad8-7fa87bc4d6a6")
+	)
+	(wire
+		(pts
+			(xy 41.91 139.7) (xy 43.18 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1861bb4d-7711-4122-b9ce-b60b0a638b46")
 	)
 	(wire
 		(pts
@@ -3477,6 +3503,16 @@
 	)
 	(wire
 		(pts
+			(xy 41.91 134.62) (xy 41.91 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9afe9059-a07f-4a88-b6c3-79676430bc13")
+	)
+	(wire
+		(pts
 			(xy 156.21 102.87) (xy 156.21 106.68)
 		)
 		(stroke
@@ -3537,6 +3573,16 @@
 	)
 	(wire
 		(pts
+			(xy 41.91 139.7) (xy 41.91 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b980b4a1-53f3-4f38-a408-5c4b4f9ce8aa")
+	)
+	(wire
+		(pts
 			(xy 36.83 76.2) (xy 45.72 76.2)
 		)
 		(stroke
@@ -3544,6 +3590,16 @@
 			(type default)
 		)
 		(uuid "b9ac6a29-6f13-4e77-a039-4a1467fa472d")
+	)
+	(wire
+		(pts
+			(xy 58.42 137.16) (xy 59.69 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd52d5b3-75f5-4af8-83cc-f5a98f1e9302")
 	)
 	(wire
 		(pts
@@ -3687,6 +3743,16 @@
 	)
 	(wire
 		(pts
+			(xy 43.18 134.62) (xy 41.91 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eadbe6d8-289e-406a-9603-69252c0f2cbe")
+	)
+	(wire
+		(pts
 			(xy 41.91 31.75) (xy 39.37 31.75)
 		)
 		(stroke
@@ -3807,7 +3873,7 @@
 		)
 		(uuid ff918cd7-b368-4b95-97a3-9699e7993d4f)
 	)
-	(text "TCS BUS TX"
+	(text "TCS:BUS TX"
 		(exclude_from_sim no)
 		(at 191.008 94.234 0)
 		(effects
@@ -3827,7 +3893,7 @@
 		)
 		(uuid "25d337c8-f866-428d-ad7e-9f7d45335aaa")
 	)
-	(text "TCS BUS RX"
+	(text "TCS:BUS RX"
 		(exclude_from_sim no)
 		(at 87.884 94.234 0)
 		(effects
@@ -3837,7 +3903,7 @@
 		)
 		(uuid "5a3674e2-6d96-4619-b8b7-604d20cf4188")
 	)
-	(text "Jumper Plug\nConnected: Reset to Factory Settings\nNot Connected: Load Config from FS"
+	(text "Jumper Plug\nConnected: Reset to Default Settings\nNot Connected: Load Config from Saved"
 		(exclude_from_sim no)
 		(at 24.13 96.52 0)
 		(effects
@@ -3858,7 +3924,7 @@
 		)
 		(uuid "62bd959d-7b36-41d5-beb9-3fd1c9ddd8ac")
 	)
-	(text "Jumper Plug\nConnected: D1 mini power from TCS P-Line\nNot Connected: D1 mini power from 5V"
+	(text "Jumper Plug\nConnected: D1 mini power from TCS:BUS P-Line\nNot Connected: D1 mini power from external "
 		(exclude_from_sim no)
 		(at 22.86 51.054 0)
 		(effects
@@ -5728,7 +5794,7 @@
 	)
 	(symbol
 		(lib_id "Comparator:LM393")
-		(at 48.26 138.43 0)
+		(at 50.8 137.16 0)
 		(unit 2)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5737,7 +5803,7 @@
 		(fields_autoplaced yes)
 		(uuid "76136860-c19e-4119-8466-010997fea5b3")
 		(property "Reference" "U2"
-			(at 48.26 128.27 0)
+			(at 50.8 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5745,7 +5811,7 @@
 			)
 		)
 		(property "Value" "LM393"
-			(at 48.26 130.81 0)
+			(at 50.8 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5753,7 +5819,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 48.26 138.43 0)
+			(at 50.8 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5762,7 +5828,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/lm393.pdf"
-			(at 48.26 138.43 0)
+			(at 50.8 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5771,7 +5837,7 @@
 			)
 		)
 		(property "Description" "Low-Power, Low-Offset Voltage, Dual Comparators, DIP-8/SOIC-8/TO-99-8"
-			(at 48.26 138.43 0)
+			(at 50.8 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5780,28 +5846,28 @@
 			)
 		)
 		(pin "8"
-			(uuid "94d9b0e9-7c7a-42cc-818c-facd7d9ff621")
+			(uuid "94d9b0e9-7c7a-42cc-818c-facd7d9ff622")
 		)
 		(pin "3"
-			(uuid "6e056523-b78d-4de9-b41e-81368fd30a33")
+			(uuid "6e056523-b78d-4de9-b41e-81368fd30a34")
 		)
 		(pin "1"
-			(uuid "0d602eff-e825-4354-9bf1-d9a488c005e7")
+			(uuid "0d602eff-e825-4354-9bf1-d9a488c005e8")
 		)
 		(pin "5"
-			(uuid "fda87948-71e2-4ffe-a528-37994ee358fb")
+			(uuid "fda87948-71e2-4ffe-a528-37994ee358fc")
 		)
 		(pin "4"
-			(uuid "e1dfb75d-34a1-45a6-913c-fecc4a6478d2")
+			(uuid "e1dfb75d-34a1-45a6-913c-fecc4a6478d3")
 		)
 		(pin "2"
-			(uuid "5ec655c1-e373-4ffe-be1c-af9e75349929")
+			(uuid "5ec655c1-e373-4ffe-be1c-af9e7534992a")
 		)
 		(pin "6"
-			(uuid "c704b96c-1ad8-4b03-a735-f0a727dc7377")
+			(uuid "c704b96c-1ad8-4b03-a735-f0a727dc7378")
 		)
 		(pin "7"
-			(uuid "c44321ec-3233-4426-bc1a-1f51dc7c4906")
+			(uuid "c44321ec-3233-4426-bc1a-1f51dc7c4907")
 		)
 		(instances
 			(project "telegram-doorman"
@@ -6348,28 +6414,28 @@
 			)
 		)
 		(pin "8"
-			(uuid "94d9b0e9-7c7a-42cc-818c-facd7d9ff621")
+			(uuid "94d9b0e9-7c7a-42cc-818c-facd7d9ff623")
 		)
 		(pin "3"
-			(uuid "6e056523-b78d-4de9-b41e-81368fd30a33")
+			(uuid "6e056523-b78d-4de9-b41e-81368fd30a35")
 		)
 		(pin "1"
-			(uuid "0d602eff-e825-4354-9bf1-d9a488c005e7")
+			(uuid "0d602eff-e825-4354-9bf1-d9a488c005e9")
 		)
 		(pin "5"
-			(uuid "fda87948-71e2-4ffe-a528-37994ee358fb")
+			(uuid "fda87948-71e2-4ffe-a528-37994ee358fd")
 		)
 		(pin "4"
-			(uuid "e1dfb75d-34a1-45a6-913c-fecc4a6478d2")
+			(uuid "e1dfb75d-34a1-45a6-913c-fecc4a6478d4")
 		)
 		(pin "2"
-			(uuid "5ec655c1-e373-4ffe-be1c-af9e75349929")
+			(uuid "5ec655c1-e373-4ffe-be1c-af9e7534992b")
 		)
 		(pin "6"
-			(uuid "c704b96c-1ad8-4b03-a735-f0a727dc7377")
+			(uuid "c704b96c-1ad8-4b03-a735-f0a727dc7379")
 		)
 		(pin "7"
-			(uuid "c44321ec-3233-4426-bc1a-1f51dc7c4906")
+			(uuid "c44321ec-3233-4426-bc1a-1f51dc7c4908")
 		)
 		(instances
 			(project "telegram-doorman"
@@ -6518,6 +6584,72 @@
 			(project "telegram-doorman"
 				(path "/b97eec34-f621-4ba5-b156-42fdf1b954b4"
 					(reference "#PWR03")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 59.69 138.43 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b6687690-014f-4ef1-a7aa-32ea6d3749de")
+		(property "Reference" "#PWR02"
+			(at 59.69 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 59.69 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 59.69 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 59.69 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 59.69 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "57ffabac-0d29-455c-8067-de379edd25aa")
+		)
+		(instances
+			(project "telegram-doorman"
+				(path "/b97eec34-f621-4ba5-b156-42fdf1b954b4"
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -6792,6 +6924,72 @@
 			(project "telegram-doorman"
 				(path "/b97eec34-f621-4ba5-b156-42fdf1b954b4"
 					(reference "J4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 41.91 140.97 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f90eea86-279b-40cf-b826-a4df9c597234")
+		(property "Reference" "#PWR011"
+			(at 41.91 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 41.91 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 41.91 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 41.91 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 41.91 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f8d62ece-33e2-43a5-a869-e23fb737913a")
+		)
+		(instances
+			(project "telegram-doorman"
+				(path "/b97eec34-f621-4ba5-b156-42fdf1b954b4"
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)

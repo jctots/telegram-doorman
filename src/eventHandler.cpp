@@ -74,6 +74,15 @@ void handleTcsGarageView(void)
   sendTelegramBroadcast("TCS Event: View Garage Camera");
 } 
 
+void handleTcsStreetOpen(void)
+{
+  sendTelegramBroadcast("TCS Event: Open Street Door");
+}
+
+void handleTcsGarageOpen(void)
+{
+  sendTelegramBroadcast("TCS Event: Open Garage Door");
+}
 
 void handleSniffMode(uint32_t cmd)
 {
@@ -84,12 +93,9 @@ void handleSniffMode(uint32_t cmd)
  
 }
 
-
-
-
-void handleTcsStreetOpen(void)
+void handleTcsStreetOpenCmd(void)
 {
-  sendTelegramBroadcast("TCS Event: Open Street Door");
+  
   tcsReader.disable();
   tcsWriter.write(config.tcs.streetOpen);
   tcsReader.enable();
@@ -97,15 +103,15 @@ void handleTcsStreetOpen(void)
   tcsReader.inject(config.tcs.streetOpen);
 }
 
-void handleTcsGarageOpen(void)
+void handleTcsGarageOpenCmd(void)
 {
-  sendTelegramBroadcast("TCS Event: Open Garage Door");
   tcsReader.disable();
   tcsWriter.write(config.tcs.garageOpen);
   tcsReader.enable();
   // dirty hack to also publish commands we have written
   tcsReader.inject(config.tcs.garageOpen);
 }
+
 
 
 void handleSilentModeRequest(void)
@@ -255,13 +261,13 @@ void handleConfigRequest(void)
     String msg;
     msg += "Bot Event:\n";
     msg += "Local IP: " + WiFi.localIP().toString() + "\n";
-    msg += "ChatIdMain: " + String(config.telegram.chatIdMain)  + "\n";
-    msg += "ChatIdSub1: " + String(config.telegram.chatIdSub1)  + "\n";
-    msg += "ChatIdSub2: " + String(config.telegram.chatIdSub2)  + "\n";
+    msg += "ChatId0: " + String(config.telegram.chatIdMain)  + "\n";
+    msg += "ChatId1: " + String(config.telegram.chatIdSub1)  + "\n";
+    msg += "ChatId2: " + String(config.telegram.chatIdSub2)  + "\n";
     msg += "PartyMode: " + String(config.partyMode) + "\n";
-    msg += "SilentMain: " + String(config.silentModeMain) + "\n";
-    msg += "SilentSub1: " + String(config.silentModeSub1) + "\n";
-    msg += "SilentSub2: " + String(config.silentModeSub2) + "\n";
+    msg += "SilentMode0: " + String(config.silentModeMain) + "\n";
+    msg += "SilentMode1: " + String(config.silentModeSub1) + "\n";
+    msg += "SilentMode2: " + String(config.silentModeSub2) + "\n";
     msg += "SniffMode: " + String(config.sniffMode) + "\n";
     msg += "DevMode: " + String(config.devMode) + "\n";
    
