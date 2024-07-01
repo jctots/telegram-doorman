@@ -9,13 +9,15 @@ struct WifiConfig
 {
     char ssid[32];
     char password[32];
+    char otaPass[16];
 };
 
 struct TelegramConfig
 {
-    char chatIdMain[16];
-    char chatIdSub1[16];
-    char chatIdSub2[16];
+    char chatId0[16];
+    char chatId1[16];
+    char chatId2[16];
+    char password[16];
 };
 
 struct TcsConfig
@@ -37,14 +39,14 @@ struct Config
     TcsConfig tcs;
     
     bool partyMode;
-    bool silentModeMain;
-    bool silentModeSub1;
-    bool silentModeSub2;
+    bool silentMode0;
+    bool silentMode1;
+    bool silentMode2;
     bool sniffMode;
     bool devMode;
-    bool silentModeMainPrev;
-    bool silentModeSub1Prev;
-    bool silentModeSub2Prev;
+    bool silentMode0Prev;
+    bool silentMode1Prev;
+    bool silentMode2Prev;
     bool sniffModePrev;
 };
 

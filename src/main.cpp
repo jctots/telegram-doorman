@@ -18,8 +18,8 @@ unsigned long bot_lasttime;          // last time messages' scan has been done
 
 
 Config config = {
-  {DEFAULT_WIFI_SSID, DEFAULT_WIFI_PASSWORD},
-  {DEFAULT_TELEGRAM_CHAT_ID, "0", "0"},
+  {DEFAULT_WIFI_SSID, DEFAULT_WIFI_PASSWORD, DEFAULT_OTA_PASSWORD},
+  {DEFAULT_TELEGRAM_CHAT_ID, "0", "0", DEFAULT_TELEGRAM_PASSWORD},
   {DEFAULT_TCS_APT_BELL, DEFAULT_TCS_STREET_CALL, DEFAULT_TCS_GARAGE_CALL, DEFAULT_TCS_STREET_VIEW, DEFAULT_TCS_GARAGE_VIEW, DEFAULT_TCS_STREET_OPEN, DEFAULT_TCS_GARAGE_OPEN},
   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 };
@@ -35,9 +35,11 @@ TCSBusWriter tcsWriter(PIN_BUS_WRITE);
 SimpleTimer timerLedPeriod(3000, &LedPeriodTimeout); // every 3 seconds
 SimpleTimer timerLedPulse(10, &LedPulseTimeout);    // turn ON LED for 10ms
 
-String chat_id;
-String text;
-String from_name;
+String chat_id = "0";
+String text = "0";
+String from_name = "0";
+
+String chat_id_new_user = "0";
 
 void setup(void)
 {
@@ -78,7 +80,10 @@ void setup(void)
   }
   Serial.println(now);
 
-  sendTelegramBroadcast("Bot Event: Bot started up. Local IP Address: " + WiFi.localIP().toString());
+  //alive
+  sendTelegramBroadcast("[Bot Event] Startup");
+  chat_id = config.telegram.chatId0;
+  handleStatusRequest();
 
   //initialize TCS 
   tcsReader.begin();
@@ -88,13 +93,13 @@ void setup(void)
   timerLedPeriod.stop();
   timerLedPulse.stop();
 
-  //OTA
+  //initialize OTA
   // Port defaults to 8266
   ArduinoOTA.setPort(8266);
   // Hostname defaults to esp8266-[ChipID]
   ArduinoOTA.setHostname("telegram-doorman");
   // No authentication by default
-  ArduinoOTA.setPassword(OTA_PASSWORD);
+  ArduinoOTA.setPassword(DEFAULT_OTA_PASSWORD);
   
   ArduinoOTA.onStart([]() {
     String type;
@@ -148,28 +153,26 @@ void setup(void)
 
 
 void loop() {
-  //OTA
+  //part 1: handle OTA
   ArduinoOTA.handle();
 
-  //handle TCS bus event
-  if (tcsReader.hasCommand())
-  {
+  //part 2: handle TCS bus event
+  if (tcsReader.hasCommand()) {
     uint32_t cmd = tcsReader.read();
     
-    if (cmd == config.tcs.apartmentBell) handleTcsApartmentBell();
-    else if (cmd == config.tcs.streetCall) handleTcsStreetCall();
-    else if (cmd == config.tcs.garageCall) handleTcsGarageCall();
-    else if (cmd == config.tcs.streetView) handleTcsStreetView();
-    else if (cmd == config.tcs.garageView) handleTcsGarageView();
-    else if (cmd == config.tcs.streetOpen) handleTcsGarageOpen();
-    else if (cmd == config.tcs.garageOpen) handleTcsGarageOpen();
-    else;
-
+    // loop event check
+    for (uint8_t n=0; n<N_TCS_EVENTS; n++) {
+      if (cmd == TcsEvents[n].cmd) {
+        TcsEvents[n].event();
+        break;
+      }
+    }
+    
     if (config.sniffMode == true) handleSniffMode(cmd);
     else;
   }
 
-  //handle telegram updates
+  //part 3: handle telegram updates
   if (millis() - bot_lasttime > BOT_MTBS)
   {
     int numNewMessages = bot.getUpdates(bot.last_message_received + 1);
@@ -187,35 +190,33 @@ void loop() {
         Serial.println(debug_msg);
 
         // respond only if registered user
-        if ((strcmp(config.telegram.chatIdMain, chat_id.c_str()) == 0) ||
-            (strcmp(config.telegram.chatIdSub1, chat_id.c_str()) == 0) ||
-            (strcmp(config.telegram.chatIdSub1, chat_id.c_str()) == 0))
+        if ((strcmp(config.telegram.chatId0, chat_id.c_str()) == 0) ||
+            (strcmp(config.telegram.chatId1, chat_id.c_str()) == 0) ||
+            (strcmp(config.telegram.chatId2, chat_id.c_str()) == 0)) 
         {
-          if (text == "/sdoor") handleTcsStreetOpenCmd();
-          else if (text == "/gdoor") handleTcsGarageOpenCmd();
-          else if (text == "/silent") handleSilentModeRequest();
-          else if (text == "/party") handlePartyModeRequest();
-          else if (text == "/help") handleHelpRequest();
-          
-          else if (text == "/sniff") handleSniffModeRequest();
-          else if (text == "/dev") handleDevModeRequest();
-          else if (text == "/config") handleConfigRequest();
-          else if (text == "/start") handleInvalidRequest();
-          else if (text == "/stop") handleStopRequest();
-          else handleUnknownRequest();
+          // loop event check
+          for (uint8_t n=0; n<N_BOT_EVENTS; n++) {
+            if (text == BotEvents[n].text) {
+              BotEvents[n].event();
+              break;
+            }
+            // break did not hit
+            else if (n == N_BOT_EVENTS-1) handleUnknownRequest();
+          }
         }
         // if unknown user, but want to register
         else if (text == "/start") handleStartRequest();
+        // unknown user enters password
+        else if (chat_id_new_user == chat_id) handlePasswordCheck();
         // if unknown user, and unknown command
         else; // no response
-                  
       }
       numNewMessages = bot.getUpdates(bot.last_message_received + 1);
     }
     bot_lasttime = millis();
   }
 
-  //handle heartbeat
+  //part 4: handle heartbeat
   timerLedPeriod.check();
   timerLedPulse.check();
 
