@@ -37,7 +37,7 @@ Other hardware-specific features:
 [Link to Interface Circuit Schematic Diagram](/docs/schematic.jpg)
 
 # 🏃Getting Started
-(Detailed steps coming soon in /docs)
+(Detailed user manual coming soon in /docs)
 - Setup PlatformIO dev environment and build (or download latest .bin from release)
 - Make interface circuit
 - Setup Telegram Bot
@@ -46,7 +46,17 @@ Other hardware-specific features:
 - Change default config with captured codes
 - Enjoy!
 
-# ✅To-do 
+# 🔧Reference Circuit and Integration
+(Detailed integration manual coming soon in /docs)
+<table border="0">
+  <tr>
+    <td><img src="/docs/protoboard_with_d1mini.jpg" alt="protoboard_with_d1mini.jpg" width="200"/></td>
+    <td><img src="/docs/intercom_open.jpg" alt="intercom_open.jpg" width="200"/></td>
+    <td><img src="/docs/intercom_connected.jpg" alt="intercom_connected.jpg" width="200"/></td>
+  </tr>
+</table>
+
+# 🚅To-do 
 - [ ] find a way to power ESP from TCS bus P-Line without cracking sound
 - [ ] proper cabling and housing
 - [ ] support for [telegram-keyman](https://github.com/jctots/telegram-keyman) for complete keyless apartment entry!
@@ -54,7 +64,7 @@ Other hardware-specific features:
 - [ ] add section for known issues and limitations
 - [ ] low power mode/wake-up/proper scheduling for optional battery support
 
-# 🛠️Roadmap 
+# 🚂Roadmap 
 - [ ] PCB layout
 - [ ] logs (reset counter, etc.) and error handling
 - [ ] simple HTML web server to update config
