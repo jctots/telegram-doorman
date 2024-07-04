@@ -4,11 +4,14 @@
 #include <LittleFS.h>
 #include <TCSBus.h>
 
+#include <buildinfo.h>
 #include <SimpleTimer.h>
 
 #include "platform.h"
 #include "dataHandler.h"
 #include "eventHandler.h"
+
+buildInfo BuildInfo;
 
 extern WiFiClientSecure secured_client;
 extern UniversalTelegramBot bot;
@@ -282,11 +285,14 @@ void handleDevModeRequest(void)
 
 void handleStatusRequest(void)
 {
+  char current_version[32];
+  snprintf(current_version, (uint8_t)32, "v%d.%d.%d", BuildInfo.mainVersionDigit, BuildInfo.minorVersionDigit, BuildInfo.patchVersionDigit);
    // only for main user
   if (strcmp(config.telegram.chatId0, chat_id.c_str()) == 0)
   {
     String msg;
     msg += "[Bot Event] Status:\n";
+    msg += "Build: " + String(current_version) + "-"+ String(BuildInfo.lastCommitTag)+" ("+ String(BuildInfo.branch) +")\n";
     msg += "Local IP: " + WiFi.localIP().toString() + "\n";
     msg += "ChatId0: " + String(config.telegram.chatId0)  + "\n";
     msg += "ChatId1: " + ((strcmp(config.telegram.chatId1, "0") == 0) ? "None" : String(config.telegram.chatId1)) + "\n";

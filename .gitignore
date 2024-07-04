@@ -2,5 +2,6 @@
 .vscode/
 
 include/secrets.h
+lib/version/buildinfo.cpp
 kicad/telegram-doorman-backups/
 kicad/telegram-doorman.kicad_prl
