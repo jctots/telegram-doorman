@@ -4,6 +4,8 @@
 #include <ArduinoJson.h>
 #include <LittleFS.h>
 #include <ArduinoOTA.h>
+#include <ESPAsyncWebServer.h>
+#include <ESPAsyncTCP.h>
 
 #include <TCSBus.h>
 #include <SimpleTimer.h>
@@ -12,17 +14,12 @@
 #include "secrets.h"
 #include "dataHandler.h"
 #include "eventHandler.h"
+#include "serverhandler.h"
+#include "html.h"
 
 const unsigned long BOT_MTBS = 1000; // mean time between scan messages
 unsigned long bot_lasttime;          // last time messages' scan has been done
 
-
-Config config = {
-  {DEFAULT_WIFI_SSID, DEFAULT_WIFI_PASSWORD, DEFAULT_OTA_PASSWORD},
-  {DEFAULT_TELEGRAM_CHAT_ID, "0", "0", DEFAULT_TELEGRAM_PASSWORD},
-  {DEFAULT_TCS_APT_BELL, DEFAULT_TCS_STREET_CALL, DEFAULT_TCS_GARAGE_CALL, DEFAULT_TCS_STREET_VIEW, DEFAULT_TCS_GARAGE_VIEW, DEFAULT_TCS_STREET_OPEN, DEFAULT_TCS_GARAGE_OPEN},
-  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-};
 
 
 X509List cert(TELEGRAM_CERTIFICATE_ROOT);
@@ -40,6 +37,8 @@ String text = "0";
 String from_name = "0";
 
 String chat_id_new_user = "0";
+
+AsyncWebServer server(80);
 
 void setup(void)
 {
@@ -133,6 +132,12 @@ void setup(void)
     }
   });
   ArduinoOTA.begin();
+
+  //init webserver
+  server.on("/", HTTP_GET, handleIndexPage);
+  server.on("/get", HTTP_GET, handleGet);
+  server.onNotFound(handle404);
+  server.begin();
 
   Serial.println("-- setup end --\n\n\n");
 

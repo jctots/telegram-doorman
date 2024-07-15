@@ -51,6 +51,7 @@ const BotEvent BotEvents[N_BOT_EVENTS] = {
   {"/start"   , handleInvalidRequest    },
   {"/stop"    , handleStopRequest       },
   {"/format"  , handleFormatRequest     },
+  {"/reset"   , handleResetRequest      },
 };
 
 
@@ -406,6 +407,23 @@ void handleFormatRequest(void){
   
 }
 
+
+void handleResetRequest(void){
+  // only for main user
+  if (strcmp(config.telegram.chatId0, chat_id.c_str()) == 0)
+  {
+
+    sendTelegramUser(config.telegram.chatId0, "[Bot Event] Resetting...");
+    (int)bot.getUpdates(bot.last_message_received + 1);//to flush reset command
+    ESP.reset();
+  }
+  // other user, invalid
+  else
+  {
+    handleInvalidRequest();
+  }
+  
+}
 
         
 void LedPeriodTimeout()

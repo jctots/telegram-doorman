@@ -9,7 +9,7 @@ struct TcsEvent
 };
 extern const TcsEvent TcsEvents[N_TCS_EVENTS];
 
-#define N_BOT_EVENTS 11
+#define N_BOT_EVENTS 12
 struct BotEvent
 {
   String text;
@@ -43,6 +43,7 @@ extern void handleUnknownRequest(void);
 extern void handleStartRequest(void);
 extern void handlePasswordCheck(void);
 extern void handleFormatRequest(void);
+extern void handleResetRequest(void);
 
 extern void sendTelegramBroadcast(const String& text);
 extern void LedPeriodTimeout(void);

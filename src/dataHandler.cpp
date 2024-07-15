@@ -1,8 +1,15 @@
 #include <LittleFS.h>
 #include <ArduinoJson.h>
 #include "dataHandler.h"
+#include "secrets.h"
 
-extern Config config;
+Config config = {
+  {DEFAULT_WIFI_SSID, DEFAULT_WIFI_PASSWORD, DEFAULT_OTA_PASSWORD},
+  {DEFAULT_TELEGRAM_CHAT_ID, "0", "0", DEFAULT_TELEGRAM_PASSWORD},
+  {DEFAULT_TCS_APT_BELL, DEFAULT_TCS_STREET_CALL, DEFAULT_TCS_GARAGE_CALL, DEFAULT_TCS_STREET_VIEW, DEFAULT_TCS_GARAGE_VIEW, DEFAULT_TCS_STREET_OPEN, DEFAULT_TCS_GARAGE_OPEN},
+  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+};
+
 
 void saveConfig(Config &config)
 {

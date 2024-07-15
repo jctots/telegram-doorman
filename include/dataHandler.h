@@ -54,3 +54,4 @@ struct Config
 extern void setupConfig(void);
 extern void saveConfig(Config &config);
 extern bool loadConfig(Config &config);
+extern Config config;
